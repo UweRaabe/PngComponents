@@ -26,7 +26,7 @@ package PngComponentsDesign;
 {$IMAGEBASE $400000}
 {$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Png components designtime'}
+{$DESCRIPTION 'Png Components Designtime'}
 {$LIBSUFFIX '190'}
 {$DESIGNONLY}
 {$IMPLICITBUILD ON}

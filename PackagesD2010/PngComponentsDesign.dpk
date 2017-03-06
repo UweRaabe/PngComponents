@@ -23,7 +23,8 @@ package PngComponentsDesign;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DESCRIPTION 'Png components designtime'}
+{$DEFINE RELEASE}
+{$DESCRIPTION 'Png Components Designtime'}
 {$LIBSUFFIX '140'}
 {$DESIGNONLY}
 {$IMPLICITBUILD ON}

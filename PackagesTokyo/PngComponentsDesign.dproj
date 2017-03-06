@@ -4,7 +4,7 @@
         <MainSource>PngComponentsDesign.dpk</MainSource>
         <Config Condition="'$(Config)'==''">Release</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>15.3</ProjectVersion>
+        <ProjectVersion>18.2</ProjectVersion>
         <Basis>True</Basis>
         <AppType>Package</AppType>
         <FrameworkType>VCL</FrameworkType>
@@ -57,9 +57,10 @@
         <DCC_S>false</DCC_S>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DesignOnlyPackage>true</DesignOnlyPackage>
-        <DllSuffix>190</DllSuffix>
+        <DllSuffix>250</DllSuffix>
         <GenDll>true</GenDll>
         <GenPackage>true</GenPackage>
+        <SanitizedProjectName>PngComponentsDesign</SanitizedProjectName>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=Png Components Design Time;FileVersion=1.3.0.0;InternalName=PngComponentsDesign;LegalCopyright=;LegalTrademarks=;OriginalFilename=PngComponentsDesign;ProductName=Png Components;ProductVersion=1.3;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1031</VerInfo_Locale>

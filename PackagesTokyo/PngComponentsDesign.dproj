@@ -54,6 +54,8 @@
         <VerInfo_Locale>1031</VerInfo_Locale>
         <VerInfo_MinorVer>3</VerInfo_MinorVer>
         <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_MajorVer>1</VerInfo_MajorVer>
+        <VerInfo_Build>0</VerInfo_Build>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>

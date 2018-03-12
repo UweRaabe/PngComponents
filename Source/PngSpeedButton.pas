@@ -33,7 +33,7 @@ type
 implementation
 
 uses
-  Graphics, ActnList, PngButtonFunctions;
+  Graphics, ActnList, PngButtonFunctions, PngImageList;
 
 { TPngSpeedButton }
 

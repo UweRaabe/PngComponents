@@ -16,10 +16,6 @@ type
 type
   TPngOption = (pngBlendOnDisabled, pngGrayscaleOnDisabled);
   TPngOptions = set of TPngOption;
-  TRGBLine = array[Word] of TRGBTriple;
-  PRGBLine = ^TRGBLine;
-  TRGBALine = array[Word] of TRGBQuad;
-  PRGBALine = ^TRGBALine;
 
 procedure MakeImageBlended(Image: TPngImage; Amount: Byte = 127);
 procedure MakeImageGrayscale(Image: TPngImage; Amount: Byte = 255);
@@ -189,6 +185,9 @@ begin
 end;
 
 procedure ConvertToPNG(Source: TGraphic; Dest: TPngImage);
+type
+  TRGBALine = array[Word] of TRGBQuad;
+  PRGBALine = ^TRGBALine;
 var
   MaskLines: array of pngimage.PByteArray;
 

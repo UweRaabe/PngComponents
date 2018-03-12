@@ -107,9 +107,9 @@ end;
 
 destructor TPngBitBtn.Destroy;
 begin
+  inherited Destroy;
   FPngImage.Free;
   FCanvas.Free;
-  inherited Destroy;
 end;
 
 procedure TPngBitBtn.ActionChange(Sender: TObject; CheckDefaults: Boolean);

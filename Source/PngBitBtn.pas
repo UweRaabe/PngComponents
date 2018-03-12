@@ -49,7 +49,7 @@ type
 implementation
 
 uses
-  ActnList, Themes, PngButtonFunctions;
+  ActnList, Themes, PngButtonFunctions, PngImageList;
 
 {$IF RTLVersion < 23.0 }
 type

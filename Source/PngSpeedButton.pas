@@ -47,8 +47,8 @@ end;
 
 destructor TPngSpeedButton.Destroy;
 begin
-  FPngImage.Free;
   inherited Destroy;
+  FPngImage.Free;
 end;
 
 procedure TPngSpeedButton.ActionChange(Sender: TObject; CheckDefaults: Boolean);

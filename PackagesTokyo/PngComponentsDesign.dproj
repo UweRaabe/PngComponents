@@ -77,7 +77,6 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\Design\PngComponents.dcr"/>
         <DCCReference Include="designide.dcp"/>
         <DCCReference Include="PngComponents.dcp"/>
         <DCCReference Include="..\Design\PngComponentsRegister.pas"/>
@@ -85,6 +84,86 @@
         <DCCReference Include="..\Design\PngImageListEditor.pas">
             <Form>PngImageListEditorDlg</Form>
         </DCCReference>
+        <RcItem Include="..\Images\TPngImageList128.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngImageList128_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngImageList16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngImageList16_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngImageList24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngImageList_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngImageList32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngImageList32_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngImageCollection128.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngImageCollection128_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngImageCollection16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngImageCollection16_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngImageCollection24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngImageCollection_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngImageCollection32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngImageCollection32_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngBitBtn128.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngBitBtn128_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngBitBtn16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngBitBtn16_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngBitBtn24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngBitBtn_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngBitBtn32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngBitBtn32_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngCheckListBox128.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngCheckListBox128_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngCheckListBox16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngCheckListBox16_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngCheckListBox24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngCheckListBox_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngCheckListBox32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngCheckListBox32_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngSpeedButton128.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngSpeedButton128_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngSpeedButton16.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngSpeedButton16_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngSpeedButton24.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngSpeedButton_PNG</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Images\TPngSpeedButton32.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>TPngSpeedButton32_PNG</ResourceId>
+        </RcItem>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

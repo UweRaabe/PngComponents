@@ -24,6 +24,7 @@ type
     FPngOptions: TPngOptions;
     function ExtractOverlayIndex(Style: Cardinal): Integer;
     function GetHeight: Integer;
+    function GetImageName(Index: Integer): string;
     function GetWidth: Integer;
     procedure SetHeight(const Value: Integer);
     procedure SetPngOptions(const Value: TPngOptions);
@@ -55,15 +56,18 @@ type
     procedure Clear; virtual;
     procedure Delete(Index: Integer); virtual;
     procedure EndUpdate(Update: Boolean = True);
+    function FindIndexByName(const AName: string): Integer;
     procedure Insert(Index: Integer; Image, Mask: TBitmap); virtual;
     procedure InsertIcon(Index: Integer; Image: TIcon); virtual;
     procedure InsertPng(Index: Integer; Image: TPngImage; Background: TColor = clNone);
     procedure InsertMasked(Index: Integer; Image: TBitmap; MaskColor: TColor); virtual;
+    procedure ListImageNames(Target: TStrings);
     procedure Move(CurIndex, NewIndex: Integer); virtual;
     function Overlay(ImageIndex: Integer; Overlay: TOverlay): Boolean;
     procedure Replace(Index: Integer; Image, Mask: TBitmap); virtual;
     procedure ReplaceIcon(Index: Integer; Image: TIcon); virtual;
     procedure ReplaceMasked(Index: Integer; NewImage: TBitmap; MaskColor: TColor); virtual;
+    property ImageName[Index: Integer]: string read GetImageName;
   published
     property ColorDepth default cd32Bit;
     property EnabledImages: Boolean read FEnabledImages write SetEnabledImages default True;
@@ -462,12 +466,15 @@ begin
     Png := TPngImage.Create;
     try
       CopyImageFromImageList(Png, Value, Index);
-      result := AddPng(Png);
-      { Since Berlin AddImage returns the new size of the list, while before it returned the index of the added image.
-        Although this behaviour seems somewhat strange, it actually matches the documentation. }
-      {$IF RTLVersion >= 31.00}
-      result := FPngImages.Count;
-      {$IFEND}
+      if RTLVersion < 31.00 then begin
+        result := AddPng(Png);
+      end
+      else begin
+        { Since Berlin AddImage returns the new size of the list, while before it returned the index of the added image.
+          Although this behaviour seems somewhat strange, it actually matches the documentation. }
+        AddPng(Png);
+        result := FPngImages.Count;
+      end;
     finally
       Png.Free;
     end;
@@ -739,9 +746,24 @@ begin
     idx := idx shr 8;
     if (idx > 0) then begin
       Dec(idx);
+      {$WARN COMPARISON_TRUE OFF }
       if (idx >= Low(FOverlayIndex)) and (idx <= High(FOverlayIndex)) then begin
         Result := FOverlayIndex[idx];
       end;
+      {$WARN COMPARISON_TRUE DEFAULT }
+    end;
+  end;
+end;
+
+function TPngImageList.FindIndexByName(const AName: string): Integer;
+var
+  I: Integer;
+begin
+  Result := -1;
+  for I := 0 to PngImages.Count - 1 do begin
+    if SameText(PngImages[I].Name, AName) then begin
+      Result := I;
+      Break;
     end;
   end;
 end;
@@ -749,6 +771,11 @@ end;
 function TPngImageList.GetHeight: Integer;
 begin
   Result := inherited Height;
+end;
+
+function TPngImageList.GetImageName(Index: Integer): string;
+begin
+  Result := PngImages[Index].Name;
 end;
 
 function TPngImageList.GetWidth: Integer;
@@ -904,6 +931,15 @@ begin
     ImageList_AddIcon(Handle, Icon);
   finally
     DestroyIcon(Icon);
+  end;
+end;
+
+procedure TPngImageList.ListImageNames(Target: TStrings);
+var
+  I: Integer;
+begin
+  for I := 0 to PngImages.Count - 1 do begin
+    Target.Add(PngImages[I].Name);
   end;
 end;
 

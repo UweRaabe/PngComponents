@@ -11,11 +11,23 @@ uses
   PngFunctions;
 
 type
+  INameMapping = interface
+  ['{38EECDD8-7440-4EA2-BFD0-424E5BB2C1D5}']
+    function GetName(Index: Integer): string;
+    function IndexOfName(const AName: string): Integer;
+    procedure ListNames(Target: TStrings);
+    property Name[Index: Integer]: string read GetName;
+  end;
+
+type
   TPngImageCollection = class;
   TPngImageCollectionItem = class;
   TPngImageCollectionItems = class;
 
-  TPngImageList = class(TImageList)
+  TPngImageList = class(TImageList, INameMapping)
+    function INameMapping.GetName = GetImageName;
+    function INameMapping.IndexOfName = FindIndexByName;
+    procedure INameMapping.ListNames = ListImageNames;
   private
     FEnabledImages: Boolean;
     FLocked: Integer;

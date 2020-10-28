@@ -72,12 +72,18 @@ var
   PaintRect: TRect;
   GlyphPos, TextPos: TPoint;
 begin
+  { Something happens in the inherited Paint call which breaks the GlyphPos and TextPos calculation}
+  if HasValidPng then
+    //Calculate the position of the PNG glyph
+    CalcButtonLayout(Canvas, FPngImage, ClientRect, FState = bsDown, Down,
+      Caption, Layout, Margin, Spacing, GlyphPos, TextPos, DrawTextBiDiModeFlags(0));
+
   inherited Paint;
 
   if HasValidPng then begin
     //Calculate the position of the PNG glyph
-    CalcButtonLayout(Canvas, FPngImage, ClientRect, FState = bsDown, Down,
-      Caption, Layout, Margin, Spacing, GlyphPos, TextPos, DrawTextBiDiModeFlags(0));
+    //CalcButtonLayout(Canvas, FPngImage, ClientRect, FState = bsDown, Down,
+    //  Caption, Layout, Margin, Spacing, GlyphPos, TextPos, DrawTextBiDiModeFlags(0));
     PaintRect := Bounds(GlyphPos.X, GlyphPos.Y, FPngImage.Width, FPngImage.Height);
 
     if csLoading in ComponentState then Exit;

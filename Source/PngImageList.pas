@@ -33,9 +33,7 @@ type
     procedure INameMapping.ListNames = ListImageNames;
   private
     FEnabledImages: Boolean;
-    {$IF CompilerVersion >= 34.0 Delphi 10.4 Sydney }
     FImageNameAvailable: Boolean;
-    {$ENDIF}
     FLocked: Integer;
     FOverlayIndex: array[TOverlay] of Integer;
     FPngImages: TPngImageCollectionItems;
@@ -99,9 +97,7 @@ type
     property ColorDepth default cd32Bit;
     property EnabledImages: Boolean read FEnabledImages write SetEnabledImages default True;
     property Height read GetHeight write SetHeight default 16;
-    {$IF CompilerVersion >= 34.0 Delphi 10.4 Sydney }
-    property ImageNameAvailable: Boolean read FImageNameAvailable write FImageNameAvailable default True;
-    {$ENDIF}
+    property ImageNameAvailable: Boolean read FImageNameAvailable write FImageNameAvailable default False;
     property PngImages: TPngImageCollectionItems read FPngImages write SetPngImages;
     property PngOptions: TPngOptions read FPngOptions write SetPngOptions default [pngBlendOnDisabled];
     property Width read GetWidth write SetWidth default 16;
@@ -398,9 +394,7 @@ begin
   {$IF CompilerVersion >= 33.0 Delphi 10.3 Rio }
   StoreBitmap := False;
   {$ENDIF}
-  {$IF CompilerVersion >= 34.0 Delphi 10.4 Sydney }
-  FImageNameAvailable := True;
-  {$ENDIF}
+  FImageNameAvailable := False;
   ColorDepth := cd32Bit;
   if ImageListCount = 0 then
     ApplyMethodPatches;

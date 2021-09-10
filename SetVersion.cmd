@@ -1,0 +1,1 @@
+"c:\Program Files (x86)\ProjectMagician\ProjectMagicianCmd.exe" -v:%1 *.dproj -s

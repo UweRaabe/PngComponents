@@ -13,6 +13,11 @@ uses
   {$ENDIF}
   PngImage, PngFunctions;
 
+{$IF CompilerVersion < 34.0 Delphi 10.4 }
+type
+  TImageName = type string;
+{$ENDIF}
+
 type
   INameMapping = interface
   ['{38EECDD8-7440-4EA2-BFD0-424E5BB2C1D5}']
@@ -89,9 +94,9 @@ type
     procedure ReplaceMasked(Index: Integer; NewImage: TBitmap; MaskColor: TColor); virtual;
     {$IF CompilerVersion >= 34.0 Delphi 10.4 }
     function IsImageNameAvailable: Boolean; override;
-    function GetIndexByName(const AName: TImageName): TImageIndex; override;
-    function GetNameByIndex(AIndex: TImageIndex): TImageName; override;
     {$ENDIF}
+    function GetIndexByName(const AName: TImageName): TImageIndex; {$IF CompilerVersion >= 34.0 Delphi 10.4 }override;{$ENDIF}
+    function GetNameByIndex(AIndex: TImageIndex): TImageName; {$IF CompilerVersion >= 34.0 Delphi 10.4 }override;{$ENDIF}
     property ImageName[Index: Integer]: string read GetImageName;
   published
     property ColorDepth default cd32Bit;
@@ -893,6 +898,7 @@ function TPngImageList.IsImageNameAvailable: Boolean;
 begin
   Result := FImageNameAvailable;
 end;
+{$ENDIF}
 
 function TPngImageList.GetIndexByName(const AName: TImageName): TImageIndex;
 begin
@@ -903,7 +909,6 @@ function TPngImageList.GetNameByIndex(AIndex: TImageIndex): TImageName;
 begin
   Result := ImageName[AIndex];
 end;
-{$ENDIF}
 
 function TPngImageList.GetWidth: Integer;
 begin

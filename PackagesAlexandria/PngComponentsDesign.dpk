@@ -27,7 +27,7 @@ package PngComponentsDesign;
 {$DEFINE RELEASE}
 {$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'Png Components Designtime'}
-{$LIBSUFFIX '270'}
+{$LIBSUFFIX '280'}
 {$DESIGNONLY}
 {$IMPLICITBUILD ON}
 
@@ -39,6 +39,6 @@ contains
   PngComponentsRegister in '..\Design\PngComponentsRegister.pas',
   PngComponentEditors in '..\Design\PngComponentEditors.pas',
   CustomPngImageListEditor in '..\Design\CustomPngImageListEditor.pas' {CustomPngImageListEditorDlg},
-  PngImageListEditor in '..\Design\LowDPI\PngImageListEditor.pas' {PngImageListEditorDlg};
+  PngImageListEditor in '..\Design\HighDPI\PngImageListEditor.pas' {PngImageListEditorDlg};
 
 end.

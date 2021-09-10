@@ -38,6 +38,7 @@ requires
 contains
   PngComponentsRegister in '..\Design\PngComponentsRegister.pas',
   PngComponentEditors in '..\Design\PngComponentEditors.pas',
-  PngImageListEditor in '..\Design\PngImageListEditor.pas' {PngImageListEditorDlg};
+  CustomPngImageListEditor in '..\Design\CustomPngImageListEditor.pas' {CustomPngImageListEditorDlg},
+  PngImageListEditor in '..\Design\LowDPI\PngImageListEditor.pas' {PngImageListEditorDlg};
 
 end.

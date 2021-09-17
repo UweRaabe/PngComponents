@@ -99,7 +99,9 @@ type
     function GetNameByIndex(AIndex: TImageIndex): TImageName; {$IF CompilerVersion >= 34.0 Delphi 10.4 }override;{$IFEND}
     property ImageName[Index: Integer]: string read GetImageName;
   published
+    {$IF CompilerVersion >= 20.0 Delphi 2009 }
     property ColorDepth default cd32Bit;
+    {$IFEND}
     property EnabledImages: Boolean read FEnabledImages write SetEnabledImages default True;
     property Height read GetHeight write SetHeight default 16;
     property ImageNameAvailable: Boolean read FImageNameAvailable write FImageNameAvailable default False;
@@ -400,7 +402,9 @@ begin
   StoreBitmap := False;
   {$IFEND}
   FImageNameAvailable := False;
+  {$IF CompilerVersion >= 20.0 Delphi 2009 }
   ColorDepth := cd32Bit;
+  {$IFEND}
   if ImageListCount = 0 then
     ApplyMethodPatches;
   Inc(ImageListCount);
@@ -688,9 +692,11 @@ begin
     end;
   end;
 
+  {$IF CompilerVersion >= 20.0 Delphi 2009 }
   if Source is TCustomImageList then begin
     ColorDepth := TCustomImageList(Source).ColorDepth;
   end;
+  {$IFEND}
 
   inherited;
 end;

@@ -10,13 +10,13 @@ uses
   Windows, Classes, SysUtils, Controls, Graphics, ImgList,
   {$IF CompilerVersion >= 34.0 Delphi 10.4 }
   System.UITypes,
-  {$ENDIF}
+  {$IFEND}
   PngImage, PngFunctions;
 
 {$IF CompilerVersion < 34.0 Delphi 10.4 }
 type
   TImageName = type string;
-{$ENDIF}
+{$IFEND}
 
 type
   INameMapping = interface
@@ -75,7 +75,7 @@ type
     {$IF CompilerVersion >= 34.0 Delphi 10.4 Sydney }
     function AddDisabledImage(Value: TCustomImageList; Index: Integer): Integer; virtual;
     procedure AddDisabledImages(Value: TCustomImageList); virtual;
-    {$ENDIF}
+    {$IFEND}
     procedure Assign(Source: TPersistent); override;
     procedure BeginUpdate;
     procedure Clear; virtual;
@@ -94,9 +94,9 @@ type
     procedure ReplaceMasked(Index: Integer; NewImage: TBitmap; MaskColor: TColor); virtual;
     {$IF CompilerVersion >= 34.0 Delphi 10.4 }
     function IsImageNameAvailable: Boolean; override;
-    {$ENDIF}
-    function GetIndexByName(const AName: TImageName): TImageIndex; {$IF CompilerVersion >= 34.0 Delphi 10.4 }override;{$ENDIF}
-    function GetNameByIndex(AIndex: TImageIndex): TImageName; {$IF CompilerVersion >= 34.0 Delphi 10.4 }override;{$ENDIF}
+    {$IFEND}
+    function GetIndexByName(const AName: TImageName): TImageIndex; {$IF CompilerVersion >= 34.0 Delphi 10.4 }override;{$IFEND}
+    function GetNameByIndex(AIndex: TImageIndex): TImageName; {$IF CompilerVersion >= 34.0 Delphi 10.4 }override;{$IFEND}
     property ImageName[Index: Integer]: string read GetImageName;
   published
     property ColorDepth default cd32Bit;
@@ -265,7 +265,7 @@ begin
     SetLength(Pointers, 17);
     {$ELSE}
     SetLength(Pointers, 15);
-    {$ENDIF}
+    {$IFEND}
     Pointers[0] := Combo(@TCustomImageList.Add, @TPngImageList.Add, 'Add');
     Pointers[1] := Combo(@TCustomImageList.AddIcon, @TPngImageList.AddIcon, 'AddIcon');
     Pointers[2] := Combo(@TCustomImageList.AddImage, @TPngImageList.AddImage, 'AddImage');
@@ -284,7 +284,7 @@ begin
     {$IF CompilerVersion >= 34.0 Delphi 10.4 Sydney }
     Pointers[15] := Combo(@TCustomImageList.AddDisabledImage, @TPngImageList.AddDisabledImage, 'AddDisabledImage');
     Pointers[16] := Combo(@TCustomImageList.AddDisabledImages, @TPngImageList.AddDisabledImages, 'AddDisabledImages');
-    {$ENDIF}
+    {$IFEND}
 
     MethodPatches := TObjectList.Create;
     for I := Low(Pointers) to High(Pointers) do begin
@@ -398,7 +398,7 @@ begin
   inherited Create(AOwner);
   {$IF CompilerVersion >= 33.0 Delphi 10.3 Rio }
   StoreBitmap := False;
-  {$ENDIF}
+  {$IFEND}
   FImageNameAvailable := False;
   ColorDepth := cd32Bit;
   if ImageListCount = 0 then
@@ -641,7 +641,7 @@ begin
     end;
   end;
 end;
-{$ENDIF}
+{$IFEND}
 
 function TPngImageList.AddMasked(Image: TBitmap; MaskColor: TColor): Integer;
 var
@@ -898,7 +898,7 @@ function TPngImageList.IsImageNameAvailable: Boolean;
 begin
   Result := FImageNameAvailable;
 end;
-{$ENDIF}
+{$IFEND}
 
 function TPngImageList.GetIndexByName(const AName: TImageName): TImageIndex;
 begin

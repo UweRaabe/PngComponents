@@ -178,6 +178,7 @@ var
   Flags: Cardinal;
   Button: TThemedButton;
   Details: TThemedElementDetails;
+  WordWrapOpt: Cardinal;
 begin
   R := ClientRect;
   FCanvas.Handle := Message.DrawItemStruct^.hDC;
@@ -239,7 +240,7 @@ begin
 
   //Calculate the position of the PNG glyph
   CalcButtonLayout(FCanvas, FPngImage, ClientRect, IsDown, False, Caption,
-    Layout, Margin, Spacing, GlyphPos, TextPos, DrawTextBiDiModeFlags(0));
+    Layout, Margin, Spacing, GlyphPos, TextPos, DrawTextBiDiModeFlags(0), WordWrap);
 
   //Draw the image
   if (FPngImage <> nil) and (Kind = bkCustom) and not FPngImage.Empty then begin
@@ -251,6 +252,10 @@ begin
   end;
 
   //Draw the text
+  if WordWrap then
+    WordWrapOpt := DT_WORDBREAK
+  else
+    WordWrapOpt := 0;
   if Length(Caption) > 0 then begin
     PaintRect := Rect(TextPos.X, TextPos.Y, Width, Height);
     FCanvas.Brush.Style := bsClear;
@@ -258,14 +263,15 @@ begin
     if not Enabled then begin
       OffsetRect(PaintRect, 1, 1);
       FCanvas.Font.Color := clBtnHighlight;
+
       DrawText(FCanvas.Handle, PChar(Caption), -1, PaintRect,
-        DrawTextBiDiModeFlags(0) or DT_TOP or DT_LEFT or DT_SINGLELINE);
+        DrawTextBiDiModeFlags(0) or DT_TOP or DT_LEFT {or DT_SINGLELINE} or WordWrapOpt);
       OffsetRect(PaintRect, -1, -1);
       FCanvas.Font.Color := clBtnShadow;
     end;
 
     DrawText(FCanvas.Handle, PChar(Caption), -1, PaintRect,
-      DrawTextBiDiModeFlags(0) or DT_TOP or DT_LEFT or DT_SINGLELINE);
+      DrawTextBiDiModeFlags(0) or DT_TOP or DT_LEFT {or DT_SINGLELINE} or WordWrapOpt);
   end;
 
   //Draw the focus rectangle

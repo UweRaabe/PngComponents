@@ -12,7 +12,8 @@ type
 
 procedure CalcButtonLayout(Canvas: TCanvas; PngImage: TPngImage; const Client:
   TRect; Pressed, Down: Boolean; const Caption: string; Layout: TButtonLayout;
-  Margin, Spacing: Integer; var GlyphPos, TextPos: TPoint; BiDiFlags: LongInt);
+  Margin, Spacing: Integer; var GlyphPos, TextPos: TPoint; BiDiFlags: LongInt;
+  const WordWrap: Boolean = FALSE);
 
 implementation
 
@@ -21,10 +22,12 @@ uses
 
 procedure CalcButtonLayout(Canvas: TCanvas; PngImage: TPngImage; const Client:
   TRect; Pressed, Down: Boolean; const Caption: string; Layout: TButtonLayout;
-  Margin, Spacing: Integer; var GlyphPos, TextPos: TPoint; BiDiFlags: LongInt);
+  Margin, Spacing: Integer; var GlyphPos, TextPos: TPoint; BiDiFlags: LongInt;
+  const WordWrap: Boolean = FALSE);
 var
   ClientSize, GlyphSize, TextSize, TotalSize: TPoint;
   TextBounds: TRect;
+  WordWrapOpt: Cardinal;
 begin
   if (BiDiFlags and DT_RIGHT) = DT_RIGHT then begin
     if Layout = blGlyphLeft then
@@ -41,10 +44,17 @@ begin
   else
     GlyphSize := Point(0, 0);
 
+  if WordWrap then
+    WordWrapOpt := DT_WORDBREAK
+  else
+    WordWrapOpt := 0;
+
   if Length(Caption) > 0 then begin
-    TextBounds := Rect(0, 0, Client.Right - Client.Left, 0);
+    TextBounds := Rect(0, 0, Client.Right - Client.Left, Client.Bottom - Client.Top);
+    if Layout in [blGlyphLeft, blGlyphRight] then
+      TextBounds.Width := TextBounds.Width - GlyphSize.Y;
     DrawText(Canvas.Handle, PChar(Caption), Length(Caption), TextBounds,
-      DT_CALCRECT or BiDiFlags);
+      DT_CALCRECT or BiDiFlags or WordWrapOpt);
     TextSize := Point(TextBounds.Right - TextBounds.Left, TextBounds.Bottom -
       TextBounds.Top);
   end

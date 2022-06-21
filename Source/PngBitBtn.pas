@@ -319,7 +319,6 @@ var
   LColor: TColor;
   LFormats: TTextFormat;
 begin
-  dtFlags := btn.DrawTextBiDiModeFlags(0) or WordBreakFlag[btn.WordWrap];
   if not (Control is TPngBitBtn) then
   begin
     inherited;
@@ -339,6 +338,7 @@ begin
   StyleServices.DrawElement(ACanvas.Handle, Details, DrawRect);
 
   btn := Control as TPngBitBtn;
+  dtFlags := btn.DrawTextBiDiModeFlags(0) or WordBreakFlag[btn.WordWrap];
   ACanvas.Font := btn.Font;
   if not btn.Enabled then State := bsDisabled
   else if FPressed then State := bsDown

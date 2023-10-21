@@ -88,7 +88,7 @@ type
     procedure InsertMasked(Index: Integer; Image: TBitmap; MaskColor: TColor); virtual;
     procedure ListImageNames(Target: TStrings);
     procedure Move(CurIndex, NewIndex: Integer); virtual;
-    function Overlay(ImageIndex: Integer; Overlay: TOverlay): Boolean;
+    function Overlay(ImageIndex: Integer; Overlay: TOverlay): Boolean; {$if RTLVersion >= 36} override;{$ifend}
     procedure Replace(Index: Integer; Image, Mask: TBitmap); virtual;
     procedure ReplaceIcon(Index: Integer; Image: TIcon); virtual;
     procedure ReplaceMasked(Index: Integer; NewImage: TBitmap; MaskColor: TColor); virtual;
@@ -1115,7 +1115,8 @@ end;
 function TPngImageList.Overlay(ImageIndex: Integer; Overlay: TOverlay): Boolean;
 begin
   Result := (ImageIndex >= 0) and (ImageIndex < Count);
-  FOverlayIndex[Overlay] := ImageIndex;
+  if Result then
+    FOverlayIndex[Overlay] := ImageIndex;
 end;
 
 function TPngImageList.PngToIcon(const Png: TPngImage; Background: TColor): HICON;

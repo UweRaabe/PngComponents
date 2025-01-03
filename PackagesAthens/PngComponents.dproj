@@ -7,10 +7,11 @@
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <FrameworkType>VCL</FrameworkType>
         <MainSource>PngComponents.dpk</MainSource>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Platform Condition="'$(Platform)'==''">Win64x</Platform>
         <ProjectGuid>{A567FA24-8D23-4C0B-9AD6-102B2A1F6D0B}</ProjectGuid>
-        <ProjectVersion>20.1</ProjectVersion>
-        <TargetedPlatforms>3</TargetedPlatforms>
+        <ProjectName Condition="'$(ProjectName)'==''">PngComponents</ProjectName>
+        <ProjectVersion>20.3</ProjectVersion>
+        <TargetedPlatforms>1048579</TargetedPlatforms>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -118,7 +119,7 @@
             <Platforms>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
-                <Platform value="Win64x">False</Platform>
+                <Platform value="Win64x">True</Platform>
             </Platforms>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
